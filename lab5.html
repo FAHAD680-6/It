@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>cdx</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;  margin: 40px; background-color: antiquewhite;
+    }
+    h2 {
+        color: darkblue;
+    }
+    section {
+        background-color: white;border-radius: 8px;padding: 25px;margin-bottom: 25px; box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+    button { margin: 5px; padding: 8px 16px; cursor: pointer;
+    }
+    input { padding: 5px; margin: 5px;
+    }
+</style>
+<script>
+    function showStudent() {
+        document.getElementById("message").innerHTML = "Welcome student";
+    }
+    function showTeacher() {
+        document.getElementById("message").innerHTML = "Welcome teacher";
+    }
+    function twoSum(a, b) {
+        return a + b;
+    }
+    function calculateSum() {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+
+        if (isNaN(num1) || isNaN(num2)) {
+            alert("Please enter valid numbers");
+            return;
+        }
+        let sum = twoSum(num1, num2);
+        // fixed ID and fixed comma issue
+        document.getElementById("sumResult").innerHTML = "<b>" + sum + "</b>";
+        alert("Calculation done!");
+    }
+    function printEvenNumber() {
+        let evens = "";
+        for (let i = 1; i <= 100; i++) {
+            if (i % 2 === 0) evens += i + " ";
+        }
+        document.getElementById("evenNumbers").innerHTML = evens;}
+</script>
+</head>  <body onload="printEvenNumber()">
+    <section>
+        <h2>Welcome Message</h2>
+        <p id="message">Click a button below</p>
+        <button onclick="showStudent()">Student</button>
+        <button onclick="showTeacher()">Teacher</button>
+    </section>
+    <section>
+        <h2>Task 3 - Sum Calculator</h2>
+        <label>Number 1:</label>
+        <input type="number" id="num1"><br>
+        <label>Number 2:</label>
+        <input type="number" id="num2"><br>
+        <button onclick="calculateSum()">Calculate</button>
+        <p>Result: <span id="sumResult"></span></p>
+    </section>
+    <section>
+        <h2>Task 4 - Even Numbers between 1 and 100</h2>
+        <p id="evenNumbers"></p>
+    </section>
+</body>
+</html>
