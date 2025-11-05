@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 7</title>
+    <style>
+        body {
+        
+            background-color: #f9f9f9;
+           
+        }
+        h1 {
+            color: #333;
+        }
+        .meal {
+            display: inline-block;
+            background-color: white;
+            border-radius: 10px;
+            
+        }
+        img {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>B99 store</h1>
+
+    <div id="mealList"></div>
+
+    <button onclick="addMeal()">Add New Meal</button>
+    <button onclick="suggestMeal()">Suggest a Meal</button>
+
+    <div id="suggestedMeal"></div>
+
+    <script>
+
+        let meals = [
+            {name: "broasted", image: "https://assets.e3arabi.com/wp-content/uploads/2020/04/shutterstock_500605693.jpg", calories: 266, vegetarian: false},
+        
+            {name: "Pasta", image: "https://kitchen.sayidaty.net/uploads/small/67/67d3f23943d50b5d59dc13cbae7a4d6a_w750_h500.jpg", calories: 310, vegetarian: true},
+            {name: "Burger", image: "https://wasfetmama.com/wp-content/uploads/2018/02/Chicken-Burger-810x500.jpg", calories: 450, vegetarian: false}
+        ];
+
+        // Function to display meals
+        function displayMeals() {
+            let output = "";
+            for (let meal of meals) {
+                output += `
+                    <div class="meal">
+                        <img src="${meal.image}" alt="${meal.name}">
+                        <h3>${meal.name}</h3>
+                        <p>Calories: ${meal.calories}</p>
+                        <p>${meal.vegetarian ? "Vegetarian" : "Non-Vegetarian"}</p>
+                    </div>
+                `;
+            }
+            document.getElementById("mealList").innerHTML = output;
+        }
+
+        // Step 2: Add new meal
+        function addMeal() {
+            let name = prompt("Enter meal name:");
+            let image = prompt("Enter image URL:");
+            let calories = prompt("Enter calorie count:");
+            let vegetarian = confirm("Is it vegetarian? (OK for Yes, Cancel for No)");
+
+            if (name && image && calories) {
+                meals.push({ name, image, calories: parseInt(calories), vegetarian });
+                displayMeals();
+            } else {
+                alert("All fields are required!");
+            }
+        }
+
+        // Step 3: Suggest random meal
+        function suggestMeal() {
+            let randomIndex = Math.floor(Math.random() * meals.length);
+            let meal = meals[randomIndex];
+            document.getElementById("suggestedMeal").innerHTML = `
+                <h2>🍴 Suggested Meal:</h2>
+                <div class="meal">
+                    <img src="${meal.image}" alt="${meal.name}">
+                    <h3>${meal.name}</h3>
+                    <p>Calories: ${meal.calories}</p>
+                    <p>${meal.vegetarian ? "Vegetarian" : "Non-Vegetarian"}</p>
+                </div>
+            `;
+        }
+
+        // Display meals on load
+        displayMeals();
+    </script>
+
+</body>
+</html>
