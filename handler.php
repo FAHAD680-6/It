@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
-$username = "root"; // <--- غيّر هذا إلى اسم مستخدم MySQL الخاص بك
-$password = "";     // <--- غيّر هذا إلى كلمة مرور MySQL الخاصة بك
+$username = "root"; 
+$password = "";       
 $dbname = "addressbook_db";
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
