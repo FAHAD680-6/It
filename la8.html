@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Lab 8 </title>
+    <script>
+        function loadText() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("content").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "data.txt", true);
+            xhttp.send();
+        }
+        function showTime() {
+            let time = new Date();
+            document.getElementById("time").innerHTML = time.toLocaleTimeString();
+        }
+        setInterval(showTime, 1000);
+    </script>
+</head>
+<body>
+    <h2>Lab 8 AJAX</h2>
+    <button onclick="loadText()">Load Text using AJAX</button><br>
+    <div id="content">Content from file will appear here...</div>
+    <h3>Current Time (Without Reload):</h3>
+    <div id="time"></div>
+</body>
+</html>
